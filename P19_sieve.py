@@ -15,21 +15,31 @@ def get_factors(n, m):
     nums = []
     answers = []
     
-    for num in range(n, 1, -1):
-        nums.append(num)
+    if m == 0:
+        for num in range(n, 1, -1):
+            nums.append(num)
+            
+        for key in nums:
+            dic[key] = ''
+            
+        for key in dic:
+            for num in range(1, n + 1):
+                ans = (key % num)
+                if ans == 0:
+                    answers.append(num)
+            dic[key] = answers
+            answers = []
         
-    for key in nums:
-        dic[key] = ''
-        
-    for key in dic:
-        for num in range(1, n + 1):
-            ans = (key % num)
+        return dic
+    else:
+        for num in range(1, m + 1):
+            ans = (m % num)
             if ans == 0:
                 answers.append(num)
-        dic[key] = answers
-        answers = []
-    
-    return dic
+            dic[m] = answers
+
+        return dic
+
     
 
 if __name__ == "__main__":
